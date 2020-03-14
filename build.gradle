@@ -1,0 +1,39 @@
+apply plugin : 'java'
+apply plugin : 'application'
+
+mainClassName = 'org.rogamba.gradletesting.GradleTesting'
+
+// Define which directories are main source code and testing
+sourceSets {
+    main {
+        java.srcDirs = ['src']
+    }
+    test {
+        java.srcDirs = ['tst']
+    }
+}
+
+// Define the dependencies per
+dependencies {
+    implementation 'com.google.code.gson:gson:2.8.0'
+    testImplementation 'junit:junit:4.12'
+}
+
+// Which task to execute in testing
+test {
+    useJUnit()
+}
+
+repositories {
+    mavenCentral()
+}
+
+// Build a fat jar
+jar {
+    manifest {
+        attributes 'Main-Class' : 'org.rogamba.gradletesting.GradleTesting'
+    }
+    from {
+        configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
