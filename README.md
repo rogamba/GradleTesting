@@ -1,6 +1,6 @@
 # Gradle Testing 
 
-Minimal gradle testing project
+Minimal project with gradle to understand the basics.
 
 Execute build;
 ```shell 
@@ -14,7 +14,7 @@ $ gradle test
 
 Test a particular class
 ```java
-$ gradle test ---tests SomeClass
+$ gradle test --tests SomeClass
 ```
 
 Clean Build directories
@@ -35,8 +35,8 @@ $ gradle dependencies --configuration compile/testCompile
     ├──/build.gradle
     ├──/src
     |   └──/org
-    |   		└──/rogamba
-    |						└──/SomeClass.java
+    |   	└──/rogamba
+    |			└──/SomeClass.java
     └──/tst
         └──/org
             └──/rogamba
@@ -46,7 +46,7 @@ $ gradle dependencies --configuration compile/testCompile
 ### Adding Gradle to a project
 
 To add gradle to your project, you need to first add the build.gradle file to your project root. To specify the root directories for main and tests, add the lines:
-```gradle
+```groovy
 sourceSets {
   main { java.srcDirs = ['main'] }
   main { java.srcDirs = ['test'] }
@@ -62,7 +62,7 @@ $ java -cp ':build/libs/ProjectClass.jar' org.rgamba.projectname.ProjectClass
 
 In order to build a .jar file that contains all of it's dependencies (fat jar), we have to specify it inside the build.gradle file adding these a lines:
 
-```gradle
+```groovy
 // Where the main method of the application resides
 mainClassName = 'org.rogamba.project.MainClass'
 // Here we set the manifest main class attribute and include the dependencies
@@ -85,7 +85,7 @@ $ java -jar build/libs/filename.jar
 
 ### Essentials of the build.gradle file:
 
-```gradle
+```groovy
 sourceSets {
     main { java.srcDirs = ['src'] }
     // We need to specify the test directory 
